@@ -82,7 +82,6 @@ activity_full$steps.x[is.na(activity_full$steps.x)]=as.integer(round(activity_fu
 
 
 ```r
-#Ordering the full data by date
 activity_full<-activity_full[,1:3]
 activity_full<-activity_full[,c(2,3,1)]
 activity_full<-activity_full[order(activity_full$date),]

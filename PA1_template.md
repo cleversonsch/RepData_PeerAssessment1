@@ -2,6 +2,10 @@
 
 ## Loading libraries
 
+```r
+library(dplyr)  
+library(ggplot2)
+```
 
 ## Loading and preprocessing the data
 
@@ -15,6 +19,9 @@ activity<-read.csv("activity.csv")
 ## What is mean total number of steps taken per day?
 
 
+```r
+activity_complete<-activity[complete.cases(activity),]  
+```
 ### 1. Calculate the total number of steps taken per day 
 
 
@@ -30,7 +37,7 @@ step_day<-summarise(bydate,steps=sum(steps))
 qplot(step_day$steps, xlab="Number of Steps per Day", ylab="Frequency", main= "Histogram of the total number of steps taken each day", binwidth=1000)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 ### 3. Calculate and report the mean and median total number of steps taken per day
 
@@ -51,7 +58,7 @@ step_interval<-summarise(byinterval, steps=mean(steps))
 ggplot(step_interval, aes(interval, steps)) + geom_line() + xlab("Interval") + ylab("Steps Average")
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
 
 ### 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -91,7 +98,7 @@ step_day_full<-summarise(bydate_full,steps=sum(steps))
 qplot(step_day_full$steps, xlab="Number of Steps per Day", ylab="Frequency", main= "Histogram of the total number of steps taken each day", binwidth=1000)
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
 
 ### Calculate and report the mean and median total number of steps taken per day
 
@@ -126,4 +133,4 @@ graph<-ggplot(step_interval_weekdays, aes(interval, steps, group=day)) + geom_li
 graph+facet_grid(day~.)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)
